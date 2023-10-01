@@ -17,6 +17,7 @@ function navAllStories(evt) {
 $body.on("click", "#nav-all", navAllStories);
 
 /** Show login/signup on click on "login" */
+console.log("testing this part");
 
 function navLoginClick(evt) {
   console.debug("navLoginClick", evt);
@@ -25,15 +26,18 @@ function navLoginClick(evt) {
   $signupForm.show();
 }
 
-$("nav").on("click", navLoginClick);
+
+$navLogin.on("click", navLoginClick);
 
 /** Show add story form on click on "submit" */
 
-function navAddStoryClick() {
+function navAddStoryClick(e) {
+  e.preventDefault();
   console.log("you just clicked the add story button");
 }
 
 testButton.addEventListener("click", navAddStoryClick);
+$navAddStory.on("click", navAddStoryClick);
 
 /** When a user first logins in, update the navbar to reflect that. */
 
