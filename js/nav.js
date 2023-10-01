@@ -31,8 +31,10 @@ $navLogin.on("click", navLoginClick);
 
 /** Show add story form on click on "submit" */
 
-function navAddStoryClick(e) {
-  e.preventDefault();
+// Test comment
+
+function navAddStoryClick(evt) {
+  console.debug("navAddStory", evt)
   console.log("you just clicked the add story button");
 }
 
