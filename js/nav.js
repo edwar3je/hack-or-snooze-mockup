@@ -35,7 +35,7 @@ $navLogin.on("click", navLoginClick);
 
 function navAddStoryClick(evt) {
   console.debug("navAddStory", evt)
-  console.log("you just clicked the add story button");
+  console.log("you just clicked the test button");
 }
 
 testButton.addEventListener("click", navAddStoryClick);
