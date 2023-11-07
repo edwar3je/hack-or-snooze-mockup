@@ -32,13 +32,18 @@
 
 <body>
 
-<!-- top navigation bar -->
+<!-- Top navigation bar -->
 <nav>
   <div class="navbar-brand">
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
   <div class="nav-left">
+    <p class="nav-filler" id="nav-fill-1">|</p>
     <a class="nav-link" href="#" id="nav-add-story">submit</a>
+    <p class="nav-filler" id="nav-fill-2">|</p>
+    <a class="nav-link" href="#" id="nav-favorites">favorites</a>
+    <p class="nav-filler" id="nav-fill-3">|</p>
+    <a class="nav-link" href="#" id="nav-my-stories">my stories</a>
   </div>
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
@@ -47,15 +52,25 @@
   </div>
 </nav>
 
-<!-- area for stories (all stories, user stories, favorites) -->
+<!-- Area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
 
-  <!-- loading message (removed by JS after stories loaded) -->
+  <!-- Loading message (removed by JS after stories loaded) -->
   <div id="stories-loading-msg">Loading&hellip;</div>
 
   <!-- List of all stories -->
   <ol id="all-stories-list" class="stories-list"></ol>
 
+</section>
+
+<!-- Not found message if user has not favorited any stories -->
+<section id="not-found-favorite">
+  <h1 id="not-found-favmes">Oops! Looks like you haven't favorited any stories. Come back some other time.</h1>
+</section>
+
+<!-- Not found message if user has not published any stories -->
+<section id="not-found-own">
+  <h1 id="not-found-ownmes">Oops! Looks like you haven't created any stories. Come back some other time.</h1>
 </section>
 
 <!-- Login and signup forms -->
@@ -100,26 +115,24 @@
 </section>
 
 <!-- story forms-->
-<section>
+<section class="story-add-form-container container">
   <form action="#" id="add-story-form" class="story-form hidden" method="post">
     <h4>Add a Story</h4>
     <div class="add-story-input">
-      <label>title</label>
+      <label for="add-story-title">title</label>
       <input id="add-story-title">
     </div>
     <div class="add-story-input">
-      <label>author</label>
+      <label for="add-story-author">author</label>
       <input id="add-story-author">
     </div>
     <div class="add-story-input">
-      <label>username</label>
+      <label for="add-story-url">url</label>
       <input id="add-story-url">
     </div>
-    <button type="submit">add story</button>
+    <button class="add-story-button" type="submit">add story</button>
   </form>
 </section>
-
-<button class="test">Test</button>
 
 <!-- Library JS & our JS -->
 <script src="https://unpkg.com/jquery"></script>

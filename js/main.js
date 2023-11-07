@@ -1,12 +1,13 @@
 "use strict";
 
-// So we don't have to keep re-finding things on page, find DOM elements once:
+/** DOM elements defined (using jQuery).
+ *  Primarily used to show/hide specific elements.
+ */
 
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");
-
 
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
@@ -16,6 +17,13 @@ const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
 const $navAddStory = $("#nav-add-story");
+const $navFavorites = $("#nav-favorites");
+const $navMyStories = $("#nav-my-stories");
+
+const $navFillers = $("#nav-fill-1, #nav-fill-2, #nav-fill-3");
+
+const $notFoundFavorite = $("#not-found-favorite");
+const $notFoundOwn = $("#not-found-own");
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
@@ -28,16 +36,36 @@ function hidePageComponents() {
     $loginForm,
     $signupForm,
     $addStoryForm,
-    $navAddStory
+    $navAddStory,
+    $navFavorites,
+    $navMyStories,
+    $navFillers,
+    $notFoundFavorite,
+    $notFoundOwn
   ];
   components.forEach(c => c.hide());
 }
 
+/** Hides the left navigation components (used when user is not logged in) */
+
 function hideNavComponents() {
   const navComponents = [
-    $navAddStory
+    $navAddStory,
+    $navFavorites,
+    $navMyStories,
+    $navFillers
   ]
   navComponents.forEach(n => n.hide());
+}
+
+/** Hides not found messages. */
+
+function hideNotFound() {
+  const notFoundComponents = [
+    $notFoundFavorite,
+    $notFoundOwn
+  ];
+  notFoundComponents.forEach(n => n.hide());
 }
 
 /** Overall function to kick off the app. */
@@ -49,9 +77,16 @@ async function start() {
   await checkForRememberedUser();
   await getAndShowStoriesOnStart();
 
-  // if we got a logged-in user
-  if (currentUser) updateUIOnUserLogin();
+  // If we got a logged-in user, update the UI to show left nav links (otherwise, hide the links)
+  if (currentUser){
+    updateUIOnUserLogin();
+  } else {
+    hideNavComponents();
+  }
 }
+
+hideNavComponents();
+hideNotFound();
 
 // Once the DOM is entirely loaded, begin the app
 

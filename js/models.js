@@ -24,8 +24,11 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    let newUrl = new URL(this.url);
+    if(newUrl.host){
+      return newUrl.host
+    }
+    return 'hostname.com'
   }
 }
 
@@ -48,10 +51,6 @@ class StoryList {
    */
 
   static async getStories() {
-    // Note presence of `static` keyword: this indicates that getStories is
-    //  **not** an instance method. Rather, it is a method that is called on the
-    //  class directly. Why doesn't it make sense for getStories to be an
-    //  instance method?
 
     // query the /stories endpoint (no auth required)
     const response = await axios({
@@ -83,16 +82,7 @@ class StoryList {
       "url": `${url}`}
     });
     let info = content.data.story;
-    console.log(content.data);
     return new Story(info.storyId, info.title, info.author, info.url, info.url, info.username, info.createdAt);
-
-    /*const content = await axios.post({
-      url: `${BASE_URL}/stories`,
-      method: "POST",
-    })*/
-    //const addedStory = ;
-    //return new Story();
-    // UNIMPLEMENTED: complete this function!
   }
 }
 
@@ -209,6 +199,44 @@ class User {
     } catch (err) {
       console.error("loginViaStoredCredentials failed", err);
       return null;
+    }
+  }
+
+  /** Uses an API call to add a story to a user's 'favorites'.
+   *  Requires: 
+   *    - username
+   *    - storyId
+   *    - token
+   */
+
+  async addFavorite(storyId) {
+    try {
+      await axios({
+        url: `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
+        method: "POST",
+        data: {token: localStorage.getItem("token")} 
+      });
+    } catch (err) {
+      console.log("Error, could not favorite story");
+    }
+  }
+
+  /** Uses an API call to remove a story from a user's 'favorites'.
+   *  Requires:
+   *    - username
+   *    - storyId
+   *    - token
+   */
+
+  async removeFavorite(storyId) {
+    try {
+      await axios({
+        url: `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
+        method: "DELETE",
+        data: {token: localStorage.getItem("token")}
+      });
+    } catch (err) {
+      console.log("Error, could not remove favorited story");
     }
   }
 }

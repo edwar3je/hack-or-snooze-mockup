@@ -3,6 +3,8 @@
 body {
   font-family: Arimo, sans-serif;
   margin: 8px 7.5vw;
+  background: rgb(232,179,236);
+  background: radial-gradient(circle, rgba(232,179,236,1) 25%, rgba(100,192,245,1) 78%);
 }
 
 h1 {
@@ -104,6 +106,14 @@ form > hr {
 
 .login-input label {
   width: 70px;
+}
+
+.add-story-button {
+  width: 8rem;
+}
+
+label {
+  font-weight: bold;
 }
 
 

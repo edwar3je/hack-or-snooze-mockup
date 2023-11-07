@@ -11,13 +11,18 @@ const testButton = document.querySelector(".test");
 function navAllStories(evt) {
   console.debug("navAllStories", evt);
   hidePageComponents();
+  if(currentUser){
+    $navAddStory.show();
+    $navFavorites.show();
+    $navMyStories.show();
+    $navFillers.show();
+  }
   putStoriesOnPage();
 }
 
 $body.on("click", "#nav-all", navAllStories);
 
 /** Show login/signup on click on "login" */
-console.log("testing this part");
 
 function navLoginClick(evt) {
   console.debug("navLoginClick", evt);
@@ -29,19 +34,57 @@ function navLoginClick(evt) {
 
 $navLogin.on("click", navLoginClick);
 
-/** Show add story form on click on "submit" */
-
-// Test comment
+/** Show add story form on click on "submit".
+ *  Also maintains nav elements on click.
+*/
 
 function navAddStoryClick(evt) {
-  console.debug("navAddStory", evt)
-  console.log("you just clicked the test button");
+  console.debug("navAddStory", evt);
+  hidePageComponents();
+  $navAddStory.show();
+  $navFavorites.show();
+  $navMyStories.show();
+  $navFillers.show();
+  $addStoryForm.show();
 }
 
-testButton.addEventListener("click", navAddStoryClick);
 $navAddStory.on("click", navAddStoryClick);
 
-/** When a user first logins in, update the navbar to reflect that. */
+/** Shows favorited stories upon clicking "favorites".
+ *  Also maintains nav elements on click.
+ */
+
+function navFavoritesClick(evt) {
+  console.debug("navFavorites", evt);
+  hidePageComponents();
+  $navAddStory.show();
+  $navFavorites.show();
+  $navMyStories.show();
+  $navFillers.show();
+  putFavoritesOnPage();
+}
+
+$navFavorites.on("click", navFavoritesClick);
+
+/** Shows self-published stories upon clicking "my stories".
+ *  Also maintains nav elements on click.
+ */
+
+function navOwnStoriesClick(evt) {
+  console.debug("navOwnStories", evt);
+  hidePageComponents();
+  $navAddStory.show();
+  $navFavorites.show();
+  $navMyStories.show();
+  $navFillers.show();
+  putOwnStoriesOnPage();
+}
+
+$navMyStories.on("click", navOwnStoriesClick);
+
+/** When a user first logins in, update the navbar to reflect that. 
+ *  This should include all nav elements previously hidden.
+*/
 
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
@@ -49,5 +92,8 @@ function updateNavOnLogin() {
   $navLogin.hide();
   $navLogOut.show();
   $navAddStory.show();
+  $navFavorites.show();
+  $navMyStories.show();
+  $navFillers.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }

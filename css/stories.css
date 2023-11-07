@@ -19,11 +19,67 @@
 
 /* Individual stories */
 
+.story-full {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.story-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.favorite-button {
+  height: 15px;
+  width: 15px;
+}
+
+.favorite-button:hover {
+  cursor: pointer;
+}
+
+.unfavorite-button {
+  height: 15px;
+  width: 15px;
+}
+
+.unfavorite-button:hover {
+  cursor: pointer;
+}
+
+.delete-button {
+  height: 15px;
+  width: 15px;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+}
+
+.story-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.story-hostlink {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 3px;
+}
+
 .story-link {
   color: black;
   font-size: 0.85rem;
-  font-weight: normal;
-  margin: 18px 0;
+  font-weight: bold;
 }
 
 .story-link:hover {
@@ -31,9 +87,39 @@
 }
 
 .story-author {
-  margin-left: 2em;
+  color: #228b22;
+  font-weight: bold;
 }
 
 .story-user {
-  display: block;
+  color: #e49b0f;
+  font-weight: bold;
+}
+
+/* Not found message containers */
+
+section#not-found-favorite {
+  background-color: #f6f6ef;
+  font-size: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+h1#not-found-favmes {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+section#not-found-own {
+  background-color: #f6f6ef;
+  font-size: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+h1#not-found-ownmes {
+  margin-top: 10px;
+  margin-left: 10px;
 }

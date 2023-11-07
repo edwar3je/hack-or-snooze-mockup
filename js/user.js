@@ -25,6 +25,7 @@ async function login(evt) {
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
+  putStoriesOnPage();
 }
 
 $loginForm.on("submit", login);
@@ -47,6 +48,8 @@ async function signup(evt) {
   updateUIOnUserLogin();
 
   $signupForm.trigger("reset");
+
+  putStoriesOnPage();
 }
 
 $signupForm.on("submit", signup);
@@ -102,6 +105,7 @@ function saveUserCredentialsInLocalStorage() {
 
 /** When a user signs up or registers, we want to set up the UI for them:
  *
+ * - hide the sign-up/log-in forms
  * - show the stories list
  * - update nav bar options for logged-in user
  * - generate the user profile part of the page
@@ -109,7 +113,7 @@ function saveUserCredentialsInLocalStorage() {
 
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
-
+  hidePageComponents();
   $allStoriesList.show();
   updateNavOnLogin();
 }

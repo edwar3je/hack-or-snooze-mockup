@@ -24,11 +24,28 @@ nav {
   align-items: center;
 }
 
+#nav-all {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 .nav-right {
   margin-left: auto;
   text-align: right;
 }
 
-p.separator {
+.nav-filler {
+  font-weight: bold;
+}
+
+#nav-add-story {
+  font-weight: bold;
+}
+
+#nav-favorites {
+  font-weight: bold;
+}
+
+#nav-my-stories {
   font-weight: bold;
 }
